@@ -1,0 +1,60 @@
+{% extends './base.html'%}{% block content %} {% load static %}
+<div class="shipping-container">
+  <h2>Select Shipping Address</h2>
+  {% for message in messages %}
+  <div class="error-message" style="margin: 0 auto;">{{message}}</div>
+  {% endfor %}
+  <div class="shipping-addresses">
+    <div class="add-new-address" style="width: 70%; margin: 0 auto;">
+      <button
+        type="button"
+        class="cursor-pointer"
+        style="left: 0; transform: translateX(0);"
+      >
+        Add New Address
+      </button>
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="place-order" value="place-order" />
+      {% for address in addresses %}
+      <div class="shipping-address d-flex address-container align-center">
+        <input
+          type="radio"
+          name="shipping-address"
+          value="{{address.pk}}"
+          id="{{address.pk}}"
+        />
+        <label for="{{address.pk}}" class="cursor-pointer"></label>
+        <div>
+          <h3>{{address.name}}</h3>
+          <p>{{address.mobile}}</p>
+          <p>{{address.address}}</p>
+          <p>{{address.locality}}</p>
+          <p>{{address.state}}</p>
+          <p>{{address.city}}</p>
+          <p>{{address.pin_code}}</p>
+        </div>
+      </div>
+      {% endfor %} {% if addresses %}
+      <button type="submit" class="cursor-pointer">Proceed To Payment</button>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+<div class="new-address-modal">
+  <div class="new-address-form-container d-flex align-center justify-center">
+    <h2>Add New Address</h2>
+    <form method="POST">
+      {% csrf_token %} {{form.as_p}}
+      <input type="hidden" name="new-address" value="new-address" />
+      <div class="address-action-buttons">
+        <button type="button" class="cursor-pointer">Cancel</button>
+        <button type="Submit" class="cursor-pointer">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="{% static 'js/addressApp.js' %}"></script>
+{% endblock %}

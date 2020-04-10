@@ -1,0 +1,46 @@
+{% extends './base.html' %}{% block content %} {% load static %}
+<div class="change-password-modal">
+  <div class="change-password-form d-flex align-center">
+    <h2 class="text-center">Change Password</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="change-password" value="change-password" />
+      <label for="old-password">Current Password : </label>
+      <input type="password" name="old-password" id="old-password" />
+      <br />
+      <label for="new-password1">New Password : </label>
+      <input type="password" name="new-password1" id="new-password1" />
+      <br />
+      <label for="new-password2">Confirm New Password : </label>
+      <input type="password" name="new-password2" id="new-password2" />
+      <br />
+      <button type="button" class="cancel-change-password cursor-pointer">
+        Cancel
+      </button>
+      <button type="submit" class="cursor-pointer">Change Password</button>
+    </form>
+  </div>
+</div>
+
+<div class="edit-user-container d-flex align-center">
+  <h2 class="text-center">Edit Profile</h2>
+  {% for message in messages %}
+  <div class="error-message">{{message}}</div>
+  {% endfor %}
+  <div class="details-container">
+    <h3>Username : <span class="decrease-weight">{{request.user}}</span></h3>
+    <h3>
+      Email-ID : <span class="decrease-weight">{{request.user.email}}</span>
+    </h3>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="change-name" value="change-name" />
+      <p>First Name : {{edit_user_form.first_name}}</p>
+      <p>Last Name : {{edit_user_form.last_name}}</p>
+      <h3 class="cursor-pointer change-password-link">Change Password ?</h3>
+      <button type="submit" class="cursor-pointer">Save Changes</button>
+    </form>
+  </div>
+</div>
+<script src="{% static 'js/editApp.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/solid.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Clothing Store</title>
+  </head>
+  <body>
+    <div class="navigation d-flex align-center justify-space-around width-100">
+      <div class="site-name">
+        <h2 class="user-sel">
+          <a href="{% url 'home_page' %}">Clothing Store</a>
+        </h2>
+      </div>
+      <div class="nav-links-container height-100">
+        <ul class="nav-links d-flex align-center justify-space-around">
+          <li>
+            <a
+              href="{% url 'category_page' category='Men' %}"
+              class="nav-link user-sel cursor-pointer"
+              >Men</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'category_page' category='Women' %}"
+              class="nav-link user-sel cursor-pointer"
+              >Women</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'category_page' category='Kid' %}"
+              class="nav-link user-sel cursor-pointer"
+              >Kids</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="account-logo-container text-center cursor-pointer height-100">
+        <i class="fa fa-user account-logo" aria-hidden="true"></i>
+        <div class="account-drop-down">
+          {% if request.user.is_authenticated %} {% if request.user.is_staff %}
+          <div class="not-a-user">
+            <h3>Hello</h3>
+            <hr />
+            <h4>
+              <a href="{% url 'login_page' %}" class="login-anchor">Login</a>
+              <br />
+              or <br />
+              <a href="{% url 'signup_page' %}" class="signup-anchor">Signup</a>
+            </h4>
+          </div>
+          {% else %}
+          <ul class="account-options">
+            <h3>Hello, {{request.user.first_name}}</h3>
+            <hr />
+            <li><a href="{% url 'orders_page' %}">Orders</a></li>
+            <li>
+              <a href="{% url 'saved_addresses_page' %}">Addresses</a>
+            </li>
+            <li><a href="{% url 'edit_profile_page' %}">Edit Profile</a></li>
+            <li><a href="{% url 'logout_user' %}">Logout</a></li>
+          </ul>
+          {% endif %} {% else %}
+          <div class="not-a-user">
+            <h3>Hello</h3>
+            <hr />
+            <h4>
+              <a href="{% url 'login_page' %}" class="login-anchor">Login</a>
+              <br />
+              or <br />
+              <a href="{% url 'signup_page' %}" class="signup-anchor">Signup</a>
+            </h4>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="cart-logo-container text-center cursor-pointer height-100">
+        <a href="{% url 'cart_page' %}">
+          <p class="fas fa-shopping-cart cart-logo"></p>
+        </a>
+      </div>
+    </div>
+    <div class="main-container">
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>

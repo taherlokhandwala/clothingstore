@@ -1,0 +1,19 @@
+{% extends './base.html' %} {% block content %}
+<div class="home-container d-flex align-center">
+  <div class="home-sub-container text-center">
+    <h2 class="user-sel">Clothing</h2>
+    <div class="shop-category">
+      <a href="{% url 'category_page' category='Men' %}"
+        ><button type="button" class="cursor-pointer">Shop Men</button></a
+      >
+      <a href="{% url 'category_page' category='Women' %}"
+        ><button type="button" class="cursor-pointer">Shop Women</button></a
+      >
+      <a href="{% url 'category_page' category='Kid' %}"
+        ><button type="button" class="cursor-pointer">Shop Kids</button></a
+      >
+    </div>
+  </div>
+</div>
+
+{% endblock %}

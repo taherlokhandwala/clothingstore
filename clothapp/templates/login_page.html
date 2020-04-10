@@ -1,0 +1,37 @@
+{% extends './base.html' %} {% block content %}
+<div class="login-landing text-center">
+  <h2>
+    Welcome Back To The Clothing Store.
+  </h2>
+</div>
+<div class="login-form-container">
+  <h3 class="text-center">LOG IN</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div class="login-field d-flex align-center justify-center">
+      <p class="fas fa-user"></p>
+      <input type="text" name="username" placeholder="Username" />
+    </div>
+    <div class="login-field d-flex align-center justify-center">
+      <p class="fas fa-key"></p>
+      <input type="password" name="password" placeholder="Password" />
+    </div>
+    <input type="submit" value="LOG IN" class="cursor-pointer" />
+  </form>
+  {% for message in messages %}
+  <h4 class="messages text-center">{{message}}</h4>
+  {% endfor %}
+  <h4 class="text-center">
+    New to The Clothing Store? <a href="{% url 'signup_page' %}">Signup</a>
+  </h4>
+</div>
+<script>
+  const messages = document.querySelector(".messages");
+  if (
+    messages.innerText == "Invalid username or password" ||
+    messages.innerText == "Please Login To Add To Cart."
+  ) {
+    messages.style.background = "#f4b5c9";
+  }
+</script>
+{% endblock %}

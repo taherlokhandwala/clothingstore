@@ -1,0 +1,49 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+<div class="signup-landing text-center">
+  <h2>
+    Welcome To The Clothing Store. <br />Become a Valuable Customer by Signing
+    Up.
+  </h2>
+</div>
+<div class="signup-form-container">
+  <h3 class="text-center">SIGN UP</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div class="signup-field d-flex align-center justify-center">
+      <p class="fas fa-user"></p>
+      {{form.username}}
+    </div>
+    <div class="signup-field d-flex align-center justify-center">
+      <p class="fas fa-id-card"></p>
+      {{form.first_name}}
+    </div>
+    <div class="signup-field d-flex align-center justify-center">
+      <p class="fas fa-id-card"></p>
+      {{form.last_name}}
+    </div>
+    <div class="signup-field d-flex align-center justify-center">
+      <p class="fas fa-envelope-square"></p>
+      {{form.email}}
+    </div>
+    <div class="signup-field d-flex align-center justify-center">
+      <p class="fas fa-key"></p>
+      {{form.password1}}
+    </div>
+    <div class="signup-field d-flex align-center justify-center">
+      <p class="fas fa-key"></p>
+      {{form.password2}}
+    </div>
+    {% if error %}
+    <div class="signup-errors">
+      <h4 class="text-center">There was a problem with :</h4>
+      {{error}}
+    </div>
+    {% endif %}
+    <input type="submit" value="SIGN UP" class="cursor-pointer" />
+  </form>
+  <h4 class="text-center">
+    Already have an account? <a href="{% url 'login_page' %}">Login</a>
+  </h4>
+</div>
+<script src="{% static 'js/signupApp.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends './base.html' %} {% block content %}
+<div class="category-info user-sel">
+  <h2 class="text-center">{{category}}'s Collection</h2>
+</div>
+<div class="products-container d-flex">
+  {% for product in products %}
+  <a
+    href="{% url 'product_page' category=category p_id=product.pk %}"
+    class="product"
+  >
+    <div>
+      <img src="{{product.image_main.url}}" alt="" class="width-100" />
+      <h3>{{product.brand}}</h3>
+      <p>{{product.description}}</p>
+      <h3>Rs.{{product.price}}</h3>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

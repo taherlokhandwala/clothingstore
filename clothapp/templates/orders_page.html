@@ -1,0 +1,42 @@
+{% extends './base.html' %}{% block content %}{% load static %}
+<div class="orders-container">
+  {% if orders %}
+  <h2>{{request.user.first_name}}'s Orders</h2>
+  {% for order in orders %}
+  <div class="order-container d-flex justify-space-around">
+    <div class="order-image-container user-sel">
+      <img src="{{order.image_source}}" alt="" class="height-100 width-100" />
+    </div>
+    <div class="order-info">
+      <h2>{{order.brand}}</h2>
+      <h3>{{order.description}}</h3>
+      <h2>Rs.{{order.price}}</h2>
+      <h3>Ordered On:</h3>
+      <p>{{order.order_date}}</p>
+      <h3 style="margin-top: 15px;">Order ID:</h3>
+      <p>{{order.order_id}}</p>
+    </div>
+    <div class="order-address-info">
+      <h2>Ship To:</h2>
+      <h3>{{order.name}}</h3>
+      <p>{{order.mobile}}</p>
+      <p>{{order.address}}</p>
+      <p>{{order.locality}}</p>
+      <p>{{order.state}}</p>
+      <p>{{order.city}}</p>
+      <p>{{order.pin_code}}</p>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="no-cart-items d-flex align-center justify-space-around">
+    <h2>You Have No Orders</h2>
+    <p class="fa fa-frown-o" aria-hidden="true"></p>
+    <br />
+    <a href="{% url 'home_page' %}"
+      ><input type="button" value="Click Here To Shop"
+    /></a>
+  </div>
+  {% endif %}
+</div>
+<script src="{% static 'js/cartApp.js' %}"></script>
+{% endblock %}

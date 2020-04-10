@@ -1,0 +1,69 @@
+{% extends './base.html' %} {% block content %} {% load static %}
+<div class="image-modal">
+  <div class="image-modal-image">
+    <span class="close-modal-span user-sel cursor-pointer">&times;</span>
+  </div>
+</div>
+
+<div class="size-chart-modal">
+  <div class="size-chart-container">
+    <span class="close-modal-span">&times;</span>
+    <div class="size-chart d-flex align-center text-center height-100">
+      <h2>Size Chart</h2>
+      <table class="size-chart-table" cellspacing="0">
+        <tr>
+          {% for heading in headers %}
+          <th>{{heading}}</th>
+          {% endfor %}
+        </tr>
+        {% for informations in size_chart %}
+        <tr>
+          {% for information in informations %}
+          <td>{{information}}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="product-container d-flex">
+  <div class="product-image-container d-flex height-100">
+    {% for image_url in image_urls %}
+    <div class="product-images">
+      <img src="{{image_url}}" alt="" class="width-100 user-sel" />
+    </div>
+    {% endfor %}
+  </div>
+  <div class="product-info-container">
+    <h2>{{product.brand}}</h2>
+    <h3>{{product.description}}</h3>
+    <h2>Rs.{{product.price}}</h2>
+    <form method="POST" class="size-form">
+      {% csrf_token %}
+      <h3 class="size-chart-header-container">
+        Select Size &emsp;&emsp;<span class="size-chart-span cursor-pointer"
+          >Size Chart ></span
+        >
+      </h3>
+      {% for size in sizes %}
+      <input type="radio" name="size" id="{{size}}" value="{{size}}" />
+      <label for="{{size}}" class="text-center user-sel cursor-pointer"
+        >{{size}}</label
+      >
+      {% endfor %}
+      <br />
+      <button type="button" class="text-center cursor-pointer user-sel">
+        Add To Cart
+      </button>
+    </form>
+    {% for message in messages %}
+    <div class="error-message">{{message}}</div>
+    {% endfor %}
+    <h2 class="h2-before-addcart">Product Details:</h2>
+    <h3>{{product.product_details | linebreaks}}</h3>
+  </div>
+</div>
+<script src="{% static 'js/productApp.js' %}"></script>
+{% endblock %}

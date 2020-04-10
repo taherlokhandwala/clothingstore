@@ -1,0 +1,65 @@
+{% extends './base.html' %}{% block content %} {% load static %}
+<div class="cart-container d-flex">
+  {% if not count %}
+  <div class="no-cart-items d-flex align-center justify-space-around">
+    <h2>Your Cart is Empty</h2>
+    <p class="fa fa-frown-o" aria-hidden="true"></p>
+    <br />
+    <a href="{% url 'home_page' %}"
+      ><input type="button" value="Click Here To Shop"
+    /></a>
+  </div>
+  {% else %}
+  <div class="cart-items-container">
+    <h2>
+      {{request.user.first_name}}'s Shopping Cart (Items : {{count}})
+    </h2>
+    {% for item in items %}
+    <div class="cart-item-container d-flex">
+      <div class="cart-item-image-container user-sel height-100">
+        <a
+          href="{% url 'product_page' category=item.category p_id=item.product_id%}"
+        >
+          <img
+            src="{{item.image_source}}"
+            alt=""
+            class="height-100 width-100"
+          />
+        </a>
+      </div>
+
+      <div class="cart-item-info">
+        <h2>{{item.brand}}</h2>
+        <h3>{{item.description}}</h3>
+        <h2>Size : {{item.product_size}}</h2>
+        <h2>Rs.{{item.price}}</h2>
+        <form method="POST">
+          {% csrf_token %}
+          <button
+            type="submit"
+            name="primary_key"
+            value="{{item.product_id}}"
+            class="cursor-pointer"
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+          <input
+            type="text"
+            name="product_size"
+            value="{{item.product_size}}"
+          />
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="total-price-info">
+    <h2 class="text-center">Total Cart Value: <span>Rs.{{total}}</span></h2>
+    <a href="{% url 'shipping_page' %}"
+      ><input type="button" value="Proceed To Shipping" class="cursor-pointer"
+    /></a>
+  </div>
+  {% endif%}
+</div>
+<script src="{% static 'js/cartApp.js' %}"></script>
+{% endblock %}
