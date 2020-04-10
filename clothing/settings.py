@@ -124,3 +124,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'), ]
 # Media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images/')
 MEDIA_URL = os.path.join(BASE_DIR, 'images/')
+
+# payment
+PAYU_MERCHANT_KEY = "7oYKme7V",
+
+PAYU_MERCHANT_SALT = "hbtv2j8Gqe",
+
+# Change the PAYU_MODE to 'LIVE' for production.
+PAYU_MODE = "TEST"

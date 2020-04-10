@@ -12,8 +12,11 @@ from .models import Product, Cart, Address, Order
 
 import uuid
 
+# payment related
+import stripe
+stripe.api_key = "sk_test_GtDG0cn5a7hN7JmwlrguIUma00nuYEXvKc"
+
 # Create your views here.
-MERCHANT_KEY = 'sVSvOhtPp#1vqdJl'
 
 SIZE_CHART_MEN = [("Size", "Chest(in)", "Front Length(in)", "Across Shoulder(in)"), ("XS", 35.5, 25.1, 15.4), ("S", 37.0,
                                                                                                                25.8, 15.8), ("M", 38.5, 26.5, 16.3), ("L", 40.0, 27.3, 17.0), ("XL", 41.8, 28.0, 17.8), ("XXL", 43.0, 28.8, 18.5)]
@@ -218,6 +221,7 @@ def saved_addresses_page(request):
 address = ""
 order_id = 0
 user_global = ""
+total_bill_amount = 0
 @login_required(login_url='login_page')
 def shipping_page(request):
 
@@ -238,16 +242,16 @@ def shipping_page(request):
 
                 global address
                 global order_id
+                global user_global
+                global total_bill_amount
                 address = Address.objects.get(pk=address_id)
                 order_id = uuid.uuid1().node
-                total = 0
+                total_bill_amount = 0
                 for product in cart_items:
-                    total += product.price
+                    total_bill_amount += product.price
 
-                global user_global
                 user_global = request.user
-                # return render(request, "payment_page.html", {"payment_parameters": payment_parameters})
-                return HttpResponse("Hello")
+                return render(request, "payment_page.html", {"total": total_bill_amount, "order_id": order_id})
             else:
                 messages.info(request, "Please select an address")
                 return redirect('shipping_page')
@@ -262,9 +266,34 @@ def shipping_page(request):
         return redirect('cart_page')
 
 
-@csrf_exempt
 def payment_page(request):
-    pass
+
+    if request.method == "POST":
+        global user_global
+        global order_id
+        global address
+
+        customer = stripe.Customer.create(
+            name=user_global,
+            source=request.POST.get("stripeToken")
+        )
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=total_bill_amount*100,
+            currency="inr",
+            description=f"Clothing store order - {order_id}",
+        )
+
+        if charge.status == 'succeeded':
+            cart_items = Cart.objects.filter(customer_user_name=user_global)
+            for item in cart_items:
+                instance = Order(brand=item.brand, description=item.description,
+                                 price=item.price, customer_user_name=user_global, image_source=item.image_source, name=address.name, mobile=address.mobile, pin_code=address.pin_code, state=address.state, city=address.city, locality=address.locality, address=address.address, order_id=order_id)
+                instance.save()
+                item.delete()
+            return render(request, "order_placed_page.html", {"status": True})
+        else:
+            return render(request, "order_placed_page.html", {"status": False})
 
 
 @login_required(login_url='login_page')
