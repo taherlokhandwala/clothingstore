@@ -8,7 +8,7 @@ const h2BeforeAddCart = document.querySelector(".h2-before-addcart");
 const productInfoContainer = document.querySelector(".product-info-container");
 const productImages = document.querySelectorAll(".product-images img");
 const imageModal = document.querySelector(".image-modal");
-const imageModalImage = document.querySelector(".image-modal-image");
+const imageModalImage = document.querySelector(".image-modal-image img");
 
 // **Size chart modal logic**
 sizeChart.addEventListener("click", () => {
@@ -19,7 +19,7 @@ sizeChart.addEventListener("click", () => {
 productImages.forEach((image) => {
   image.addEventListener("click", () => {
     imageModal.style.display = "block";
-    imageModalImage.style.backgroundImage = `url('${image.src}')`;
+    imageModalImage.src = image.src;
   });
 });
 

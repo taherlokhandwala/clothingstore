@@ -1,0 +1,497 @@
+@media screen and (max-width: 1500px) {
+  .shop-category {
+    display: flex;
+    flex-direction: column;
+  }
+  .change-password-form {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .home-sub-container {
+    display: none;
+  }
+  .size-chart-container {
+    width: 45%;
+  }
+  .image-modal-image {
+    width: 50%;
+    height: 65%;
+  }
+  .signup-form-container,
+  .login-form-container {
+    width: 35%;
+  }
+  .cart-container {
+    flex-direction: column;
+  }
+  .total-price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .cart-items-container {
+    width: 100%;
+  }
+  .new-address-form-container {
+    width: 60%;
+  }
+  .new-address-form-container form input {
+    margin-left: 100px;
+    font-size: 12px;
+  }
+  .order-container {
+    height: 250px;
+  }
+  .order-info h2,
+  .order-address-info h2 {
+    font-size: 18px;
+  }
+  .order-info h3,
+  .order-address-info h3 {
+    font-size: 16px;
+  }
+  .order-info p,
+  .order-address-info p {
+    font-size: 14px;
+  }
+  .edit-user-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .product-images img {
+    height: 400px;
+  }
+  .size-form label {
+    width: 24px;
+    padding: 6px;
+    border-radius: 50%;
+    margin: 10px 0px 20px 0;
+    font-size: 14px;
+  }
+  .order-container {
+    height: 200px;
+  }
+  .order-info h2,
+  .order-address-info h2 {
+    font-size: 12px;
+  }
+  .order-info h3,
+  .order-address-info h3 {
+    font-size: 10px;
+  }
+  .order-info p,
+  .order-address-info p {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .site-name h2 {
+    font-size: 35px;
+    text-align: center;
+  }
+  .size-chart-span {
+    font-size: 14px;
+  }
+  .size-chart-header-container {
+    font-size: 14px;
+  }
+  .size-form {
+    text-align: center;
+  }
+  .size-form button {
+    width: 100px;
+    font-size: 14px;
+    height: 40px;
+  }
+  .product-container {
+    flex-direction: column;
+  }
+  .product-image-container {
+    width: 100%;
+  }
+  .product-info-container {
+    width: 100%;
+  }
+  .size-form button {
+    left: 5%;
+    transform: translateX(-55%);
+  }
+  .size-chart-container {
+    width: 45%;
+  }
+  .size-chart-table th,
+  .size-chart-table td {
+    padding: 7px;
+    font-size: 16px;
+  }
+  .size-chart h2 {
+    font-size: 24px;
+  }
+  .image-modal-image {
+    width: 50%;
+    height: 75%;
+  }
+  .signup-form-container,
+  .login-form-container {
+    width: 45%;
+  }
+  .signup-landing,
+  .login-landing {
+    font-size: 22px;
+  }
+  .edit-user-container > h2 {
+    font-size: 22px;
+  }
+  .details-container h3 {
+    font-size: 16px;
+  }
+  .details-container form p {
+    font-size: 16px;
+  }
+  .details-container form input {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .product {
+    width: 24%;
+  }
+  .product-images img {
+    height: 400px;
+  }
+  .product-info-container h2 {
+    font-size: 22px;
+  }
+  .product-info-container h3 {
+    font-size: 14px;
+  }
+  .size-chart-container {
+    width: 55%;
+  }
+  .image-modal-image {
+    width: 55%;
+    height: 65%;
+  }
+  .signup-form-container,
+  .login-form-container {
+    width: 55%;
+  }
+  .signup-landing,
+  .login-landing {
+    font-size: 18px;
+  }
+  .total-price-info h2 {
+    font-size: 22px;
+  }
+  .total-price-info h2 span {
+    font-size: 26px;
+  }
+  .total-price-info input {
+    font-size: 18px;
+  }
+  .cart-item-container {
+    height: 200px;
+  }
+  .cart-item-image-container {
+    width: 28%;
+  }
+  .cart-item-info h2 {
+    font-size: 16px;
+  }
+  .cart-item-info h3 {
+    font-size: 14px;
+  }
+  .shipping-address label {
+    width: 0.8em;
+    height: 0.8em;
+  }
+  .order-image-container img {
+    height: 70%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .product {
+    width: 32%;
+  }
+  .size-chart-container {
+    width: 60%;
+  }
+  .cart-items-container h2 {
+    font-size: 22px;
+  }
+  .address-container {
+    width: 98%;
+  }
+  .address-landing h2 {
+    font-size: 26px;
+  }
+  .new-address-form-container {
+    width: 75%;
+  }
+  .new-address-form-container form input {
+    margin-left: 100px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .site-name h2 {
+    font-size: 30px;
+    text-align: center;
+  }
+  .nav-link {
+    font-size: 15px;
+  }
+  .nav-links-container {
+    width: 45%;
+  }
+  .account-logo-container,
+  .cart-logo-container {
+    width: 7%;
+  }
+  .product {
+    width: 40%;
+  }
+  .category-info h2 {
+    font-size: 22px;
+  }
+  .product-images img {
+    height: 250px;
+  }
+  .size-chart-table th,
+  .size-chart-table td {
+    padding: 7px;
+    font-size: 14px;
+  }
+  .size-chart h2 {
+    font-size: 20px;
+  }
+  .size-chart-container {
+    width: 80%;
+  }
+  .image-modal-image {
+    width: 55%;
+    height: 55%;
+  }
+  .signup-form-container,
+  .login-form-container {
+    width: 70%;
+  }
+  .cart-item-container {
+    height: 180px;
+  }
+  .cart-item-image-container {
+    width: 30%;
+  }
+  .cart-item-info h2 {
+    font-size: 14px;
+  }
+  .cart-item-info h3 {
+    font-size: 12px;
+  }
+  .cart-item-info form i {
+    padding: 0;
+  }
+  .shipping-address label {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .edit-user-container {
+    width: 70%;
+  }
+  .details-container form button {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .site-name h2 {
+    text-align: center;
+    font-size: 25px;
+  }
+  .nav-link {
+    font-size: 15px;
+  }
+  .product p {
+    font-size: 12px;
+  }
+  .product h3 {
+    font-size: 15px;
+  }
+  .size-chart-table th,
+  .size-chart-table td {
+    padding: 6px;
+    font-size: 13px;
+  }
+  .size-chart h2 {
+    font-size: 18px;
+  }
+  .image-modal-image {
+    width: 60%;
+    height: 50%;
+  }
+  .signup-form-container,
+  .login-form-container {
+    width: 80%;
+  }
+  .signup-landing,
+  .login-landing {
+    font-size: 14px;
+  }
+  .signup-field p,
+  .login-field p {
+    font-size: 16px;
+    padding: 8px;
+  }
+  .signup-field input[type="text"],
+  .signup-field input[type="password"],
+  .signup-field input[type="email"],
+  .login-field input[type="text"],
+  .login-field input[type="password"] {
+    font-size: 14px;
+    padding: 5px;
+  }
+  .signup-form-container form > input[type="submit"],
+  .login-form-container form > input[type="submit"] {
+    padding: 8px 0 8px 0;
+    font-size: 14px;
+  }
+  .total-price-info h2 {
+    font-size: 18px;
+  }
+  .total-price-info h2 span {
+    font-size: 22px;
+  }
+  .total-price-info input {
+    font-size: 14px;
+  }
+  .cart-item-container {
+    height: 180px;
+  }
+  .cart-item-image-container {
+    width: 32%;
+  }
+  .cart-item-info h2 {
+    font-size: 12px;
+  }
+  .cart-item-info h3 {
+    font-size: 10px;
+  }
+  .cart-items-container h2 {
+    font-size: 16px;
+  }
+  .address-container p {
+    font-size: 12px;
+  }
+  .address-container h3 {
+    font-size: 16px;
+  }
+  .address-container form i {
+    font-size: 12px;
+    height: 12px;
+  }
+  .new-address-form-container {
+    width: 85%;
+  }
+  .new-address-form-container form input {
+    margin-left: 100px;
+    font-size: 8px;
+  }
+  .shipping-container h2 {
+    font-size: 20px;
+  }
+  .add-new-address button,
+  .shipping-container form button {
+    font-size: 14px;
+  }
+  .payment_info h2 {
+    font-size: 18px;
+  }
+  .payment_info p {
+    font-size: 10px;
+  }
+  .order-info h2,
+  .order-address-info h2 {
+    font-size: 8px;
+  }
+  .order-info h3,
+  .order-address-info h3 {
+    font-size: 8px;
+  }
+  .order-info p,
+  .order-address-info p {
+    font-size: 8px;
+  }
+  .order-container {
+    height: 200px;
+  }
+  .orders-container > h2 {
+    font-size: 24px;
+  }
+  .edit-user-container {
+    width: 80%;
+  }
+  .details-container h3 {
+    font-size: 14px;
+  }
+  .details-container form p {
+    font-size: 14px;
+  }
+  .details-container form input {
+    font-size: 14px;
+  }
+  .change-password-form h2 {
+    font-size: 22px;
+  }
+  .change-password-form form label,
+  .change-password-form form input[type="password"] {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .site-name h2 {
+    text-align: center;
+    font-size: 20px;
+  }
+  .nav-link {
+    font-size: 11px;
+  }
+  .signup-landing,
+  .login-landing {
+    font-size: 12px;
+  }
+  .signup-field p,
+  .login-field p {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .signup-field input[type="text"],
+  .signup-field input[type="password"],
+  .signup-field input[type="email"],
+  .login-field input[type="text"],
+  .login-field input[type="password"] {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .signup-form-container form > input[type="submit"],
+  .login-form-container form > input[type="submit"] {
+    padding: 8px 0 8px 0;
+    font-size: 12px;
+  }
+  .address-landing h2 {
+    font-size: 20px;
+  }
+  .error-container {
+    text-align: center;
+  }
+}

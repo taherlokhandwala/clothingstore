@@ -3,7 +3,7 @@
   {% if orders %}
   <h2>{{request.user.first_name}}'s Orders</h2>
   {% for order in orders %}
-  <div class="order-container d-flex justify-space-around">
+  <div class="order-container d-flex justify-space-around align-center">
     <div class="order-image-container user-sel">
       <img src="{{order.image_source}}" alt="" class="height-100 width-100" />
     </div>

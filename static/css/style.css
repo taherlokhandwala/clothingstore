@@ -43,7 +43,12 @@
   font-size: 45px;
 }
 .site-name h2 a:link,
-.site-name h2 a:visited {
+.site-name h2 a:visited,
+.nav-link:visited,
+.cart-logo-container a:link,
+.cart-logo-container a:visited,
+.account-options li a:link,
+.account-options li a:visited {
   color: black;
 }
 .nav-links-container {
@@ -63,9 +68,6 @@ a:link {
   text-decoration: none;
   color: #000;
 }
-.nav-link:visited {
-  color: #000;
-}
 .nav-link:hover {
   background: #d8ccba;
 }
@@ -73,10 +75,7 @@ a:link {
 .cart-logo-container {
   width: 5%;
 }
-.cart-logo-container a:link,
-.cart-logo-container a:visited {
-  color: black;
-}
+
 .account-logo-container {
   position: relative;
   display: inline-block;
@@ -113,10 +112,6 @@ a:link {
 .account-options {
   list-style: none;
 }
-.account-options li a:link,
-.account-options li a:visited {
-  color: black;
-}
 .not-a-user * {
   margin: 10px;
 }
@@ -134,7 +129,7 @@ a:link {
 /* **Home Page Styling** */
 
 .home-container {
-  width: 98%;
+  width: 98vw;
   margin: auto;
   margin-top: 20px;
   height: 88vh;
@@ -248,9 +243,16 @@ a:link {
   background-size: cover;
   border-radius: 5px;
 }
+.image-modal-image img {
+  border-radius: 5px;
+}
 .image-modal-image span {
   z-index: 1;
-  font-size: 45px;
+  font-size: 30px;
+  padding: 0 5px 0 5px;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 5px;
 }
 .product-container {
   width: 95%;

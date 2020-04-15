@@ -164,6 +164,7 @@ def login_page(request):
     return render(request, "login_page.html", {})
 
 
+@login_required(login_url='login_page')
 def logout_user(request):
     logout(request)
     return redirect("login_page")
@@ -245,7 +246,7 @@ def shipping_page(request):
                 global user_global
                 global total_bill_amount
                 address = Address.objects.get(pk=address_id)
-                order_id = uuid.uuid1().node
+                order_id = uuid.uuid4().node
                 total_bill_amount = 0
                 for product in cart_items:
                     total_bill_amount += product.price
@@ -272,27 +273,31 @@ def payment_page(request):
         global user_global
         global order_id
         global address
+        try:
+            customer = stripe.Customer.create(
+                name=user_global,
+                source=request.POST.get("stripeToken")
+            )
 
-        customer = stripe.Customer.create(
-            name=user_global,
-            source=request.POST.get("stripeToken")
-        )
-        charge = stripe.Charge.create(
-            customer=customer,
-            amount=total_bill_amount*100,
-            currency="inr",
-            description=f"Clothing store order - {order_id}",
-        )
+            charge = stripe.Charge.create(
+                customer=customer,
+                amount=total_bill_amount*100,
+                currency="inr",
+                description=f"Clothing store order - {order_id}",
+            )
+            if charge.status == 'succeeded':
+                cart_items = Cart.objects.filter(
+                    customer_user_name=user_global)
+                for item in cart_items:
+                    instance = Order(brand=item.brand, description=item.description,
+                                     price=item.price, customer_user_name=user_global, image_source=item.image_source, name=address.name, mobile=address.mobile, pin_code=address.pin_code, state=address.state, city=address.city, locality=address.locality, address=address.address, order_id=order_id)
+                    instance.save()
+                    item.delete()
+                return render(request, "order_placed_page.html", {"status": True})
+            else:
+                return render(request, "order_placed_page.html", {"status": False})
 
-        if charge.status == 'succeeded':
-            cart_items = Cart.objects.filter(customer_user_name=user_global)
-            for item in cart_items:
-                instance = Order(brand=item.brand, description=item.description,
-                                 price=item.price, customer_user_name=user_global, image_source=item.image_source, name=address.name, mobile=address.mobile, pin_code=address.pin_code, state=address.state, city=address.city, locality=address.locality, address=address.address, order_id=order_id)
-                instance.save()
-                item.delete()
-            return render(request, "order_placed_page.html", {"status": True})
-        else:
+        except stripe.error.CardError:
             return render(request, "order_placed_page.html", {"status": False})
 
 

@@ -12,7 +12,12 @@
     /></a>
   </div>
   {% else %}
-  <h2>Failed</h2>
+  <p class="fa fa-times" style="color: red;"></p>
+  <h2 class="text-center" style="font-size: 30px;">
+    Sorry, <br />
+    Payment Failed. <br />
+    Any amount deducted will be refunded within 2-5 working days.
+  </h2>
   <div class="no-cart-items">
     <a href="{% url 'cart_page' %}"
       ><input type="button" value="Click Here To Try Again"
