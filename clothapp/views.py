@@ -178,9 +178,8 @@ def cart_page(request):
     if request.method == "POST":
         product_id = request.POST.get("primary_key")
         product_size = request.POST.get("product_size")
-        items = Cart.objects.filter(product_id=product_id)
-        for item in items:
-            if item.product_size == product_size:
+        for item in cart_items:
+            if ((str(item.product_id) == product_id) and (item.product_size == product_size)):
                 item.delete()
                 break
         return redirect('cart_page')
