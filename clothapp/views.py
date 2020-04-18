@@ -44,6 +44,9 @@ def category_page(request, category):
 def product_page(request, category, p_id):
 
     if request.method == "POST":
+        if request.user.is_staff:
+            return redirect('/admin')
+
         if request.user.is_authenticated:
             size_selected = request.POST.get("size")
             user_cart_items = Cart.objects.filter(
@@ -172,6 +175,8 @@ def logout_user(request):
 
 @login_required(login_url='login_page')
 def cart_page(request):
+    if request.user.is_staff:
+        return redirect('/admin')
 
     cart_items = Cart.objects.filter(customer_user_name=request.user)
 
@@ -196,6 +201,8 @@ def cart_page(request):
 
 @login_required(login_url='login_page')
 def saved_addresses_page(request):
+    if request.user.is_staff:
+        return redirect('/admin')
 
     if request.method == "POST":
         if request.POST.get("delete-address") == "delete-address":
@@ -224,6 +231,8 @@ user_global = ""
 total_bill_amount = 0
 @login_required(login_url='login_page')
 def shipping_page(request):
+    if request.user.is_staff:
+        return redirect('/admin')
 
     addresses = Address.objects.filter(customer_user_name=request.user)
     cart_items = Cart.objects.filter(customer_user_name=request.user)
@@ -267,6 +276,8 @@ def shipping_page(request):
 
 
 def payment_page(request):
+    if request.user.is_staff:
+        return redirect('/admin')
 
     if request.method == "POST":
         global user_global
@@ -302,6 +313,9 @@ def payment_page(request):
 
 @login_required(login_url='login_page')
 def orders_page(request):
+    if request.user.is_staff:
+        return redirect('/admin')
+
     orders = Order.objects.filter(customer_user_name=request.user)
     context = {"orders": orders}
     return render(request, "orders_page.html", context)
@@ -309,6 +323,8 @@ def orders_page(request):
 
 @login_required(login_url='login_page')
 def edit_profile_page(request):
+    if request.user.is_staff:
+        return redirect('/admin')
 
     if request.method == "POST":
         if request.POST.get("change-name") == "change-name":
