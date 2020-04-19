@@ -34,7 +34,8 @@ def home_page(request):
 def category_page(request, category):
     product_display = Product.objects.filter(category=category)
     if product_display:
-        context = {"products": product_display, "category": category}
+        context = {"products": product_display,
+                   "category": category, "page_name": f"-{category}'s'"}
         return render(request, "category_page.html", context)
     else:
         error_message = "Category Doesn't Exist."
@@ -118,7 +119,7 @@ def product_page(request, category, p_id):
                     size_chart.append(x)
 
         context = {"image_urls": image_urls, "sizes": sizes,
-                   "product": item, "size_chart": size_chart, "headers": headers}
+                   "product": item, "size_chart": size_chart, "headers": headers, "page_name": "-Product"}
 
         return render(request, "product_page.html", context)
     except ObjectDoesNotExist:
@@ -144,7 +145,7 @@ def signup_page(request):
             return render(request, "signup_page.html", context)
 
     form = CreateUserForm()
-    context = {"form": form}
+    context = {"form": form, "page_name": "-Sign-Up"}
     return render(request, "signup_page.html", context)
 
 
@@ -164,12 +165,13 @@ def login_page(request):
             messages.info(request, "Invalid username or password")
             return render(request, "login_page.html", {})
 
-    return render(request, "login_page.html", {})
+    return render(request, "login_page.html", {"page_name": "-Log-In"})
 
 
 @login_required(login_url='login_page')
 def logout_user(request):
     logout(request)
+    messages.info(request, "Logged Out")
     return redirect("login_page")
 
 
@@ -195,7 +197,7 @@ def cart_page(request):
         total += product.price
 
     context = {"items": cart_items, "total": total,
-               "count": item_count}
+               "count": item_count, "page_name": "-Cart"}
     return render(request, "cart_page.html", context)
 
 
@@ -221,7 +223,7 @@ def saved_addresses_page(request):
     addresses = Address.objects.filter(customer_user_name=request.user)
     address_count = len(addresses)
     context = {"addresses": addresses,
-               "form": new_address_form, "count": address_count}
+               "form": new_address_form, "count": address_count, "page_name": "-Addresses"}
     return render(request, "saved_addresses_page.html", context)
 
 
@@ -268,7 +270,7 @@ def shipping_page(request):
     new_address_form = NewAddressForm()
     count = len(cart_items)
     context = {"form": new_address_form,
-               "addresses": addresses}
+               "addresses": addresses, "page_name": "-Shipping"}
     if count:
         return render(request, "shipping_page.html", context)
     else:
@@ -317,7 +319,7 @@ def orders_page(request):
         return redirect('/admin')
 
     orders = Order.objects.filter(customer_user_name=request.user)
-    context = {"orders": orders}
+    context = {"orders": orders, "page_name": "-Orders"}
     return render(request, "orders_page.html", context)
 
 
@@ -353,5 +355,5 @@ def edit_profile_page(request):
             return redirect('edit_profile_page')
 
     edit_user_form = EditUser(instance=request.user)
-    context = {"edit_user_form": edit_user_form}
+    context = {"edit_user_form": edit_user_form, "page_name": "-Edit"}
     return render(request, "edit_profile_page.html", context)
