@@ -35,7 +35,7 @@ def category_page(request, category):
     product_display = Product.objects.filter(category=category)
     if product_display:
         context = {"products": product_display,
-                   "category": category, "page_name": f"-{category}'s'"}
+                   "category": category, "page_name": f"-{category}'s"}
         return render(request, "category_page.html", context)
     else:
         error_message = "Category Doesn't Exist."
