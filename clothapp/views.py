@@ -295,7 +295,7 @@ def payment_page(request):
                 customer=customer,
                 amount=total_bill_amount*100,
                 currency="inr",
-                description=f"Clothing store order - {order_id}",
+                description=f"UrbanTrend order - {order_id}",
             )
             if charge.status == 'succeeded':
                 cart_items = Cart.objects.filter(
